@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+</head>
+<body>
+	<h1>Template Practice</h1>
+	Who are you? {{name}}
+	<br>
+	what are you doing Here? {{doing}}
+	<br>
+	<br>
+	<h3>Filter</h3>
+	<ul>
+		<li>upper Name using |: {{name | upper}}</li>
+		<li>lower Name using |: {{name|lower}}</li>
+		<li>lines break using | linesbreak : {{desc|truncatewords:10}}</li>
+		<li>characters break using | truncatechars:2: {{desc|truncatechars:2}}</li>
+		<li>truncate words & charcters: {{desc|truncatewords:10|truncatechars:10|upper}}</li>
+		<li>truncate words & charcters: {{desc|truncatewords:10|upper|truncatewords:10}}</li>
+		<li>capfirst using | {{desc|capfirst}}</li>
+		<li>title using | {{desc|title}}</li>
+		<li>default (if have value then show value otherwise show default value) | Ex-1: {{status|default:"No User"}} Ex-2: {{status1|default:"no data found"}}</li>
+		<li>length find for string or list : {{desc|length}} Ex-2(for status1 var): {{status1|length}} Ex-2(list length): {{list1|length}}</li>
+		<li>Slice using |: {{name|slice:5}}</li>
+		<li>Date using|: {{date|date:'D d m y'}}</li>
+		<li>Date Predefind Format : {{date|date:"SHORT_DATE_FORMAT"}}  {{date|date:"DATE_FORMAT"}}</li>
+		<li>Time using|: {{date|time:'h:i:s a '}}</li>
+		<li>Time Predefind Format : {{date|time:"TIME_FORMAT"}}</li>
+		<li>Float value format : {{float_value|floatformat}}</li>
+		<li>Float value with decimal value limit : {{float_value|floatformat:3}}</li>
+		<li>Float value -3 (-3 means display only 3 positive decimal values other don't display(0 decimal not displayed))) : {{float_value1|floatformat:"-3"}}</li>
+		<li>if condition : {%if num == 1 and name == 'narayana'|title %}1{% endif%}</li>
+			<ul>
+				<li><b>Hint: </b>you can use different operators in DTL(Django Template Language) +, -, ==, !=, >, <, >=, <==, and, or, not, is, is not</li>
+			</ul>
+		<li>if with length condition example : {% if num|floatformat:"0"|length >= 1 %}Grater Value{%else%}Lowest value{% endif %}</li>
+		<li>Dot Lookup example: {{test}}</li>
+		<li>Dot Lookup example: {{test.0}}</li>
+		<li>Dot Lookup example: {{test.0.bar}}</li>
+		<li>Dot Lookup example: {{test.0.bar.0}}</li>
+		<li>For loop Example : <ol> {% for i in list1 %} <li>{{i}}</li> <br> {% endfor %}</ol></li>
+		<li>Reverse list in for loop using reversed : <ol>{% for l in list1 reversed%} <li>{{l}}</li>{% endfor %}</ol></li>
+
+		<li>Empty in list using empty : <ol> {% for i in list2 %} <li>{{i}}</li> {% empty %} <b>Not available</b> {% endfor %}</ol></li>
+
+
+	</ul>
+	<h3>Predefind for loop variables</h3>
+	<ul>
+		<li>forloop.counter : <br>{%for m in list1 %} {{forloop.counter}}{{m}}<br>{% endfor %}</li>
+
+		<li>For loop counter0 : <br>{% for m in list1 %} {{forloop.counter0}}{{m}}<br>{%endfor%}</li>
+
+		<li>forloop using revcounter : <br>{% for n in list1 %} {{forloop.revcounter}} {{n}} <br>{%endfor%}</li>
+
+		<li>forloop using revcounter from 0 : <br>{% for n in list1 %} {{forloop.revcounter0}} {{n}} <br>{%endfor%}</li>
+
+		<li>forloop check first element : <br>{%for i in list1%} {{forloop.first}}{{i}}<br> {%endfor%}</li>
+
+		<li>forloop using last element check : <br>{%for f in list1 reversed%}{{forloop.last}}{{f}}<br>{%endfor%}</li>
+
+		<li>print numbers for Parent for loop in nested loop : 
+			{%for key,value in data1.items%}<br>
+				{{key}}<br>
+				{%for k,v in value.items%}
+					{{forloop.parentloop.counter}} {{k}}{{v}}<br>
+				{%endfor%}
+			{%endfor%} 
+		</li>	
+
+		<li>Comments in 3.1 django version : {# hello this is a comment #} flower brackets open # this is a comment# flower brackets close</li>
+
+		<li>Comments with name django 3.1 version :{% comment "optional" %}This is also a comment using comment name{% endcomment %}Second type of comment using comment "comment name" & endcomment </li>
+
+	</ul>
+
+	<h3>Other types in django  template language </h3>
+	<ol>
+		<li>Template Inheritance using "extends 'home/base.html'"</li>
+		<li>"include" for import one template into another template </li>
+		<li>"with" keyword to asiign one variable to another variable</li>
+	</ol>
+</body>
+</html>
